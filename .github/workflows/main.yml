@@ -13,19 +13,7 @@ jobs:
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
-
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          protocol: ftp
-          server: websitelimited.com
-          username: admin_filament_deployment
-          password: M70557082m
-          exclude: |
-            **/.git*
-            **/.git*/**
-
-            
+        
       - name: ⚙️ Set up PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -47,5 +35,19 @@ jobs:
             php artisan db:seed
             php artisan storage:link
           fi
+          
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          protocol: ftp
+          server: websitelimited.com
+          username: admin_filament_deployment
+          password: M70557082m
+          exclude: |
+            **/.git*
+            **/.git*/**
+
+            
+      
           
           
