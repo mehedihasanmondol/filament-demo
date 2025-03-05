@@ -24,7 +24,29 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+
             
+      - name: ⚙️ Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer
+
+      - name: 🛠 First-Time Setup (Run Manually If Needed)
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          composer install --no-dev --optimize-autoloader
+          if [ ! -f .env ]; then
+            cp .env.example .env
+            php artisan key:generate
+          fi
+          if [ ! -f database/database.sqlite ]; then
+            touch database/database.sqlite
+            php artisan migrate --force
+            php artisan db:seed --force
+          fi
+          php artisan storage:link
+          
 
       - name: 📢 Send Notification
         run: |
