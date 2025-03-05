@@ -35,7 +35,7 @@ jobs:
       - name: 🛠 First-Time Setup (Run Manually If Needed)
         run: |
           if [ ! -d vendor ]; then
-          composer install --no-dev --optimize-autoloader
+          composer install
           fi
           if [ ! -f .env ]; then
             cp .env.example .env
@@ -43,8 +43,8 @@ jobs:
           fi
           if [ ! -f database/database.sqlite ]; then
             touch database/database.sqlite
-            php artisan migrate --force
-            php artisan db:seed --force
+            php artisan migrate
+            php artisan db:seed
             php artisan storage:link
           fi
           
