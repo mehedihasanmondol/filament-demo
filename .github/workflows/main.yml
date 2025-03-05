@@ -1,0 +1,48 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: 
+
+name: Sending filament.websitelimited.com to the moon 🚀
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          protocol: ftps
+          server: 44.208.71.17
+          username: admin_filament_deployment@websitelimited.com
+          password: @M70557082m
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/public/**
+            **/SQL/**
+            public/**
+            SQL/**
+            resources/css/**
+            resources/fonts/**
+            resources/images/**
+            resources/js/**
+            resources/json/**
+            resources/lang/**
+            resources/sass/**
+            resources/scss/**
+
+      - name: 📢 Send Notification
+        run: |
+          curl -X POST https://whatsapp.cetakonline.id/send/message \
+          -H "Content-Type: application/json" \
+          -d '{
+                "message": "Filament Deployment 🔥\nNew Commit:\n'"${{ github.event.head_commit.message }}"'\n\nRegards, \Filament BOT",
+                "phone": "8801912336505@g.us"
+              }'
