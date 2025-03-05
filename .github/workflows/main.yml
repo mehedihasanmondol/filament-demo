@@ -49,12 +49,3 @@ jobs:
           fi
           
           
-
-      - name: 📢 Send Notification
-        run: |
-          curl -X POST https://whatsapp.cetakonline.id/send/message \
-          -H "Content-Type: application/json" \
-          -d '{
-                "message": "Filament Deployment 🔥\nNew Commit:\n'"${{ github.event.head_commit.message }}"'\n\nRegards, \Filament BOT",
-                "phone": "8801912336505@g.us"
-              }'
