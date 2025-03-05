@@ -24,19 +24,7 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
-            **/node_modules/**
-            **/public/**
-            **/SQL/**
-            public/**
-            SQL/**
-            resources/css/**
-            resources/fonts/**
-            resources/images/**
-            resources/js/**
-            resources/json/**
-            resources/lang/**
-            resources/sass/**
-            resources/scss/**
+            
 
       - name: 📢 Send Notification
         run: |
