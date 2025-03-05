@@ -19,7 +19,7 @@ jobs:
         with:
           protocol: ftps
           server: 44.208.71.17
-          username: admin_filament_deployment@websitelimited.com
+          username: websi6103@websitelimited.com
           password: M70557082m
           exclude: |
             **/.git*
