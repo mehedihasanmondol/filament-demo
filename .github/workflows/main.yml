@@ -18,8 +18,8 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           protocol: ftp
-          server: 44.208.71.17
-          username: admin_filament_deployment@websitelimited.com
+          server: websitelimited.com
+          username: admin_filament_deployment
           password: M70557082m
           exclude: |
             **/.git*
