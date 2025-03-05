@@ -33,9 +33,10 @@ jobs:
           tools: composer
 
       - name: 🛠 First-Time Setup (Run Manually If Needed)
-        if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
+          if [ ! -d vendor ]; then
           composer install --no-dev --optimize-autoloader
+          fi
           if [ ! -f .env ]; then
             cp .env.example .env
             php artisan key:generate
@@ -44,8 +45,9 @@ jobs:
             touch database/database.sqlite
             php artisan migrate --force
             php artisan db:seed --force
+            php artisan storage:link
           fi
-          php artisan storage:link
+          
           
 
       - name: 📢 Send Notification
