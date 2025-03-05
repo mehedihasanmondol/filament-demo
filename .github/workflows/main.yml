@@ -17,7 +17,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          protocol: ftps
+          protocol: sftp
           server: 44.208.71.17
           username: websi6103@websitelimited.com
           password: M70557082m
